@@ -1,0 +1,5 @@
+Subject: Test Email - Just Checking In
+Hi TestRecipient,
+This is just a quick test email to make sure everything is working correctly. Please feel free to ignore this.
+Thanks,
+Person
