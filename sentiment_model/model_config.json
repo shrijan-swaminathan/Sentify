@@ -1,0 +1,1 @@
+{"base_model": "bert-base-uncased", "num_outputs": 3, "dropout": 0.3}

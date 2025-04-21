@@ -1,0 +1,501 @@
+email,politeness_formality,emotional_tone,clarity_constructiveness
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.12,0.01,0.2
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.87,1.0,0.93
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.33,0.02,0.37
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.41,0.33,0.39
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.73,0.54,0.58
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.63,0.98,0.96
+Thanks again for your quick response. Your help is much appreciated!,0.86,0.81,1.0
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.7,0.39,0.74
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.98,0.43,1.0
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.9,0.42,1.0
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.95,0.89
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.65,0.4,0.92
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.84,0.24,0.8
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",1.0,0.57,1.0
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.3,0.22,0.54
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.84,0.4,0.69
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,1.0,1.0,0.68
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.58,0.0,0.6
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.72,0.8,1.0
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.66,0.28,0.37
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.81,0.4,0.78
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.93,0.66,0.88
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.33,0.18,0.35
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.39,0.61,0.93
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.48,0.32,0.45
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.84,0.8,0.82
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.57,0.15,0.29
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.74,0.4,0.68
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.81,0.3,0.73
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.84,0.31,0.84
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.52,0.31,1.0
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.63,0.58,0.65
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.85,0.93,0.77
+Thanks again for your quick response. Your help is much appreciated!,0.94,1.0,0.95
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.72,0.75,0.6
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.87,0.41,0.66
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.63,0.91,0.81
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.61,0.16,0.33
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.32,0.22,0.35
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.58,0.09,0.38
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.43,0.0,0.54
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.58,0.46,0.3
+Thanks again for your quick response. Your help is much appreciated!,0.79,1.0,0.95
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.79,1.0,0.95
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.52,0.45,0.95
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,1.0,0.4,1.0
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.97,0.71,0.89
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.83,0.5,0.5
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.31,0.1,0.77
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.76,0.29,0.28
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,1.0,0.89,0.88
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.27,0.33,0.68
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.8,0.74,0.9
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.51,0.4,0.66
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.35,0.2,0.13
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.91,0.29,0.75
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.47,0.08,0.66
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.15,0.0,0.3
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.47,0.13,0.27
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.6,0.24,0.52
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.37,0.35,0.49
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.89,0.79,0.33
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.72,0.6,0.72
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.72,0.57,0.94
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.94,0.94,1.0
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.38,0.25,0.48
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.98,0.7,0.74
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.86,1.0,0.74
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.48,0.1,0.28
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.1,0.16,0.71
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.79,0.3,0.49
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.96,0.41,0.83
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.26,0.0,0.26
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.2,0.34,0.2
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.87,0.55,0.94
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.62,0.49,0.79
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.78,0.56,0.61
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.09,0.0,0.19
+Thanks again for your quick response. Your help is much appreciated!,0.78,1.0,0.74
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.14,0.22,0.4
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.6,0.54,0.69
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.75,0.31,0.72
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.88,0.62,0.52
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.74,0.49,0.68
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.58,0.22,0.35
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.32,0.26,0.49
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.56,0.41,0.43
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.72,0.35,0.69
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.88,0.83
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.79,0.39,0.38
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.82,0.49,1.0
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.96,0.53,1.0
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.99,0.64,1.0
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,1.0,0.77,0.94
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.48,0.22,0.4
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.9,0.63
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.54,0.49,0.3
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.85,0.74,0.69
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.66,0.34,0.66
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.3,0.39,0.45
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.65,0.31,0.46
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,1.0,0.97,0.9
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,1.0,0.47,0.78
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.41,0.53,0.8
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.86,0.62,0.78
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.5,0.5,0.71
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",1.0,0.41,0.79
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,1.0,0.74,0.89
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.55,0.3,0.38
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.77,0.24,0.7
+Thanks again for your quick response. Your help is much appreciated!,1.0,1.0,0.72
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.68,0.89
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.69,0.84,0.93
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,1.0,0.55,0.9
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.95,1.0
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.86,0.55
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.87,0.77,0.83
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.92,1.0,0.89
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.96,0.17,0.46
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.29,0.03,0.48
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.92,0.92,1.0
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.61,0.43,0.49
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.38,0.41,0.08
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,1.0,1.0,0.82
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.66,0.41,1.0
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.92,0.49,0.8
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.94,0.63,0.88
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.66,0.1,0.0
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.86,0.48,1.0
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.39,0.1,0.24
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,1.0,1.0,1.0
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.57,0.3,0.41
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.76,0.56,0.94
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.56,0.39,0.67
+Thanks again for your quick response. Your help is much appreciated!,0.75,0.81,0.79
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.74,0.73,1.0
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",1.0,0.51,0.73
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.81,0.74,1.0
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.76,0.62,0.5
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,1.0,0.47,0.65
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.74,0.49,1.0
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.88,0.27,0.82
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.98,1.0,0.93
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.73,0.51,0.95
+Thanks again for your quick response. Your help is much appreciated!,0.84,0.92,0.44
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.9,0.84,0.42
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.91,0.63,0.82
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.41,0.16,0.52
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.85,0.56,0.88
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",1.0,0.75,0.94
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",1.0,0.55,0.93
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.79,0.78,0.76
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",1.0,0.53,0.95
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.86,0.37,0.7
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.94,0.61,0.63
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,1.0,0.92,0.92
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.95,0.48,0.72
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.8,0.86,0.96
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.78,0.65,0.6
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.88,0.65,0.97
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.91,0.9,0.98
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.22,0.07,0.44
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.64,0.21,0.59
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.54,0.21,0.38
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.27,0.22,0.83
+Thanks again for your quick response. Your help is much appreciated!,0.92,0.97,0.92
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.51,0.61,0.67
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.49,0.0,0.16
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.94,0.89,0.89
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.82,0.79
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.93,0.46,1.0
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.42,0.39,0.37
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.46,0.0,0.15
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.13,0.23,0.1
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.25,0.2,0.59
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.57,0.22,0.39
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.82,0.35,0.77
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.61,0.58,0.41
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.81,0.46,0.95
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.8,0.6,0.92
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.74,0.46,1.0
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.8,0.77,0.95
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.68,0.39,0.69
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.14,0.08,0.25
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.77,0.49,0.64
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.94,0.95
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.0,0.08,0.35
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.88,0.59,0.67
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.47,0.37,0.3
+Thanks again for your quick response. Your help is much appreciated!,0.72,0.94,1.0
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.93,0.5,0.59
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.9,0.58,1.0
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.81,0.51,1.0
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,1.0,0.46,0.62
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.94,0.89,0.68
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.64,0.47,0.44
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.67,0.74,1.0
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.88,0.7,0.92
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.8,0.76,1.0
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.84,0.45,0.93
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.83,0.27,0.81
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.29,0.47,0.52
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.54,0.11,0.94
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",1.0,0.6,0.53
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.75,0.62,0.86
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.19,0.41,0.69
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,1.0,0.61,0.78
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.84,1.0,1.0
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.93,1.0,0.72
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.55,0.72,1.0
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.35,0.22,0.15
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.66,0.59,0.5
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.79,0.49,0.99
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.73,0.15,0.25
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.98,0.51,0.77
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.85,0.43,0.88
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.78,0.55,0.91
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.61,0.1,0.4
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",1.0,1.0,1.0
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.71,0.9,1.0
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",1.0,0.69,0.91
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.79,0.33,0.75
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.92,0.42,0.83
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.9,0.45,1.0
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.67,0.63,0.92
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.78,0.7,0.66
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",1.0,0.55,0.55
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",1.0,0.47,0.81
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.91,0.44,0.87
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.93,0.91,1.0
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.29,0.38,0.44
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.8,0.93,0.94
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.81,0.58,1.0
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.53,0.25,0.43
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,1.0,0.67,1.0
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.82,0.49,0.65
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.21,0.29,0.28
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.37,0.22,0.49
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,1.0,1.0,0.86
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",1.0,0.76,0.9
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.71,0.87,0.91
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,1.0,0.49,0.89
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.94,0.54,0.93
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.9,1.0,0.8
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.92,0.79,1.0
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.26,0.3,0.51
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.44,0.22,0.63
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.98,0.66,1.0
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.77,0.47,0.57
+Thanks again for your quick response. Your help is much appreciated!,0.77,0.84,1.0
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.46,0.05,0.64
+Thanks again for your quick response. Your help is much appreciated!,0.85,0.94,0.96
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.44,0.17,0.64
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",1.0,0.84,1.0
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.56,0.88,0.98
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.8,0.34,0.77
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.32,0.16,0.57
+Thanks again for your quick response. Your help is much appreciated!,0.83,0.83,1.0
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.79,0.34,0.52
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.69,0.43,0.93
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.58,0.82,0.68
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.38,0.05,0.49
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",1.0,0.59,0.76
+Thanks again for your quick response. Your help is much appreciated!,0.93,0.46,1.0
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.86,0.56,0.88
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.3,0.15,0.59
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.76,0.56,0.81
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.71,0.74,0.76
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.82,1.0,0.78
+Thanks again for your quick response. Your help is much appreciated!,0.88,0.94,0.88
+Thanks again for your quick response. Your help is much appreciated!,0.65,0.97,0.88
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.51,0.07,0.2
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.83,0.43,0.77
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.52,0.26,0.16
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.42,0.16,0.63
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.78,0.52,0.68
+Thanks again for your quick response. Your help is much appreciated!,0.99,1.0,0.81
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.98,0.61,1.0
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.15,0.22,0.71
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.96,0.52,0.81
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",1.0,0.57,1.0
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",1.0,0.38,0.73
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.83,0.2,0.92
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.7,0.32,0.59
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.27,0.08,0.24
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.38,0.06,0.4
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.61,0.74,0.69
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.54,0.31,0.51
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.71,0.57,0.82
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.56,0.22,0.9
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.36,0.24,0.45
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.88,0.66,1.0
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.93,0.9,1.0
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.58,0.54,1.0
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.71,0.6,0.84
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.48,0.16,0.5
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.24,0.11,0.39
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.92,0.68,0.92
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",1.0,0.49,0.95
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.87,0.39,0.92
+Thanks again for your quick response. Your help is much appreciated!,0.94,0.92,0.85
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.15,0.17,0.29
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.01,0.0,0.1
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.74,0.55,0.94
+Thanks again for your quick response. Your help is much appreciated!,0.94,0.99,1.0
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.81,0.53,1.0
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.81,0.67,0.68
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.19,0.25,0.26
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.66,0.0,0.26
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.94,0.53,0.47
+Thanks again for your quick response. Your help is much appreciated!,0.79,0.96,1.0
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.75,0.59,1.0
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.94,0.32,0.58
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.62,0.41,0.56
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.89,0.73,0.81
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.67,0.56,0.84
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.54,0.4,0.32
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.46,0.22,0.26
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.65,0.91,1.0
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.81,0.72
+Thanks again for your quick response. Your help is much appreciated!,0.93,1.0,0.83
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.39,0.17,0.26
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.2,0.02,0.29
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.83,0.45,0.81
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.6,0.24,0.5
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.85,1.0,0.92
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.78,0.59,0.81
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.97,0.45,0.58
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.99,1.0,0.79
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.46,0.54,0.32
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.94,0.47,0.78
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.28,0.19,0.37
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.93,1.0,0.93
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.7,0.67,0.93
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.82,1.0,0.65
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,1.0,0.69,1.0
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.8,0.59,0.41
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.62,0.54,0.81
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.26,0.13,0.51
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.84,0.82,1.0
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.44,0.25,0.32
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.46,0.04,0.19
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.77,0.47,0.82
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.65,0.51,0.87
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.92,0.85
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.7,0.34,1.0
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.82,0.52,0.39
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.51,1.0,0.94
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.7,0.49,0.89
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.72,0.45,1.0
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.05,0.0,0.6
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,1.0,0.9,0.92
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.97,0.68,1.0
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.9,0.98,1.0
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.76,0.4,0.84
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,1.0,0.49,0.81
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,1.0,0.58,0.99
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.39,0.3,0.24
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,1.0,1.0,0.88
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,1.0,0.47,0.84
+Thanks again for your quick response. Your help is much appreciated!,0.95,1.0,1.0
+Thanks again for your quick response. Your help is much appreciated!,0.92,1.0,1.0
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.1,0.12,0.12
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.4,0.09,0.18
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.87,0.51,0.81
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.39,0.0,0.75
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.46,0.47,0.56
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.59,0.55,0.3
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.69,0.64,1.0
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.75,0.24,0.86
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.49,0.36,0.21
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.89,1.0,0.84
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.9,0.63,1.0
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.89,0.6,0.83
+Thanks again for your quick response. Your help is much appreciated!,0.77,0.68,0.8
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.77,0.7,0.3
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.96,1.0,0.63
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.57,0.29,0.45
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.58,0.22,0.61
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.87,0.41,0.86
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.72,0.72,0.48
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.89,0.72,1.0
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.7,0.4,0.32
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.45,0.47,0.55
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.15,0.0,0.13
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.47,0.0,0.42
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.63,0.32,1.0
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.91,0.59,0.6
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.7,0.46,0.8
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.8,1.0,0.89
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.98,0.48,0.57
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.87,0.59,0.34
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.2,0.21,0.59
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.34,0.05,0.16
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.98,0.68,0.61
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",1.0,0.41,0.97
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.95,0.72,0.87
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.82,0.93,0.79
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.65,0.95,1.0
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.56,0.93
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.84,0.25,0.64
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.99,0.72,1.0
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.85,0.8
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.37,0.07,0.3
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,1.0,1.0,0.94
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.86,0.52,1.0
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.35,0.09,0.17
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.6,0.34,0.85
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.93,0.59,0.52
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,1.0,0.83,0.73
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.58,0.07,0.53
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.98,0.9,0.84
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.9,0.38,0.78
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,1.0,0.81,1.0
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.48,0.18,0.57
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.31,0.17,0.19
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.87,0.73,0.92
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.97,0.83,0.81
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.82,0.45,0.6
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.47,0.33,0.66
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.95,0.65,0.82
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.57,0.56,0.4
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.4,0.39,0.34
+Thanks again for your quick response. Your help is much appreciated!,0.76,0.6,0.66
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.36,0.17,0.31
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.74,0.29,0.71
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.8,1.0,0.96
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.16,0.24,0.48
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.41,0.15,0.68
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.61,0.66,0.73
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.73,0.78,1.0
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.91,0.97,0.75
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.89,1.0
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.61,0.22,0.45
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.84,0.44,0.95
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.97,0.5,0.78
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.0,0.34,0.4
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.26,0.18,0.11
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.73,0.41,0.67
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.81,0.58,0.8
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.22,0.31,0.39
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.92,0.87,1.0
+Great job on the presentation today! Your insights were clear and valuable to the whole team.,0.79,0.88,1.0
+Thanks again for your quick response. Your help is much appreciated!,0.84,0.99,0.81
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.22,0.04,0.6
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.78,0.65,0.84
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.29,0.39,0.55
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.75,0.58,0.86
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.34,0.2,0.69
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.52,0.16,0.63
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.86,0.62
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.14,0.2,0.31
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.98,0.71,0.79
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.48,0.23,0.57
+Thanks again for your quick response. Your help is much appreciated!,0.83,1.0,1.0
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",1.0,0.64,0.93
+Thanks again for your quick response. Your help is much appreciated!,0.89,1.0,0.85
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.18,0.0,0.17
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.58,0.51,0.68
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.55,0.2,0.45
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.42,0.46,0.5
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.48,0.23,0.52
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.9,0.22,0.92
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.89,0.62,1.0
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.94,0.65,0.74
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.52,0.0,0.47
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.82,0.54,0.51
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.9,0.55,0.44
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.34,0.0,0.45
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.87,0.5,1.0
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.0,0.18,0.21
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.87,0.44,0.9
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.44,0.03,0.45
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.88,0.65,0.97
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.42,0.0,0.49
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,1.0,0.88,1.0
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.94,0.53,0.76
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.65,0.33,0.93
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",1.0,0.66,0.92
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.95,0.83,0.84
+Thanks again for your quick response. Your help is much appreciated!,1.0,1.0,0.7
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.64,0.73,0.6
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.78,0.35,0.97
+"Unfortunately, we will need to postpone the meeting. Let me know your availability for next week.",0.91,0.63,0.83
+Thanks again for your quick response. Your help is much appreciated!,0.8,0.95,1.0
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.74,0.85,1.0
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.74,0.55,1.0
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.8,0.5,0.88
+This is getting frustrating. I've asked multiple times and still haven't received the documents. Please send them ASAP.,0.69,0.38,0.48
+Can you clarify what you meant in your last message? I'm not sure I understand the proposed changes.,0.71,0.62,0.47
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.99,0.71,0.86
+Thanks again for your quick response. Your help is much appreciated!,1.0,0.82,0.86
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,0.89,0.45,0.88
+What you did in the last deployment was completely unacceptable. We’ve discussed this before.,0.16,0.06,0.18
+Please find attached the latest budget spreadsheet. Let me know if any line items need revision.,1.0,0.73,0.92
+"Hi team, just a quick reminder to submit your weekly reports by EOD Friday. Let me know if you have any issues.",0.72,0.7,0.96
+I don’t agree with this decision. It seems rushed and lacks proper input from the team.,0.5,0.3,0.52
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.9,0.54,1.0
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.83,0.44,0.81
+We’ll need a more detailed plan before proceeding. Can you send a revised version by tomorrow?,0.71,0.61,0.9
