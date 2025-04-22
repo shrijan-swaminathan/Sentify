@@ -1,6 +1,8 @@
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from transformers import pipeline
+from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
+import torch
 
 # Download VADER lexicon if not already downloaded
 nltk.download('vader_lexicon')
@@ -32,11 +34,19 @@ def analyze_sentiment(text):
     return result
 
 def analyze_intent(text):
-    classifier = pipeline("zero-shot-classification")
-    labels = ["inform", "request", "follow-up"]
-    result = classifier(text, labels)
-    intent = result['labels'][0]
-    return intent
+    # classifier = pipeline("zero-shot-classification")
+    # labels = ["inform", "request", "follow-up"]
+    # result = classifier(text, labels)
+    # intent = result['labels'][0]
+    # return intent
+    model = DistilBertForSequenceClassification.from_pretrained("intent_classification_model")
+    tokenizer = DistilBertTokenizer.from_pretrained("intent_classification_model")
+    inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True)
+    outputs = model(**inputs)
+    probs = torch.nn.functional.softmax(outputs.logits, dim=1)
+    pred = torch.argmax(probs, dim=1).item()
+    reverse_label_map = {0: 'follow-up', 1: 'request', 2: 'inform'}
+    return reverse_label_map[pred]
     
 def analyze_formality(text):
     classifier = pipeline("zero-shot-classification")
