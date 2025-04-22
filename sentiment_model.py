@@ -39,9 +39,17 @@ def analyze_intent(text):
     return intent
     
 def analyze_formality(text):
-    return None
+    classifier = pipeline("zero-shot-classification")
+    labels = ["formal", "unformal", "neutral"]
+    result = classifier(text, labels)
+    formality = result['labels'][0]
+    return formality
 def analyze_audience(text):
-    return None
+    classifier = pipeline("zero-shot-classification")
+    labels = ["professional", "personal", "general"]
+    result = classifier(text, labels)
+    audience = result['labels'][0]
+    return audience
 if __name__ == "__main__":
     # Example usage
     email_text = "I am very happy with the service."
