@@ -1,6 +1,6 @@
 import streamlit as st
 from gpt import gpt, gpt_edit_email
-from vader_nltk import analyze_sentiment
+from sentiment_model import analyze_sentiment
 
 def chatbot_response(input_text):
     sentiment = analyze_sentiment(input_text)

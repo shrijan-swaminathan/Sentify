@@ -1,5 +1,5 @@
 from gpt import gpt
-from vader_nltk import analyze_sentiment
+from sentiment_model import analyze_sentiment
 
 if __name__ == "__main__":
     test_neutral_email = """
