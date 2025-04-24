@@ -1,7 +1,7 @@
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from transformers import pipeline
-from predict_formality import getformality
+from sentence_level_formality import analyze_formality_by_sentence
 
 # Download VADER lexicon if not already downloaded
 nltk.download("vader_lexicon")
@@ -44,7 +44,7 @@ def analyze_intent(text):
 
 
 def analyze_formality(text):
-    return getformality(text)
+    return analyze_formality_by_sentence(text)["classification"]
 
 
 def analyze_audience(text):
