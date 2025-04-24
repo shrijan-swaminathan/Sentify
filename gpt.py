@@ -1,6 +1,7 @@
 import openai
 import keys
 import json
+from json_fix import fix_and_parse
 
 feedback_instructions = """
     You are an email coach assistant that provides constructive feedback on emails.
@@ -86,20 +87,20 @@ discourse = [{"role": "system", "content": feedback_instructions}]
 
 def gpt(text, sentiment_data, discourse=discourse):
     input_format = f"""
-Email Text:
-------
-{text}
-------
+        Email Text:
+        ------
+        {text}
+        ------
 
-Sentiment Analysis:
-- Sentiment Category: {sentiment_data['sentiment_category']}
-- Sentiment Scores: pos={sentiment_data['sentiment_scores']['pos']:.2f}, neg={sentiment_data['sentiment_scores']['neg']:.2f}, neu={sentiment_data['sentiment_scores']['neu']:.2f}, compound={sentiment_data['sentiment_scores']['compound']:.2f}
-- Intent: {sentiment_data['intent']}
-- Formality: {sentiment_data['formality']}
-- Audience: {sentiment_data['audience']}
+        Sentiment Analysis:
+        - Sentiment Category: {sentiment_data['sentiment_category']}
+        - Sentiment Scores: pos={sentiment_data['sentiment_scores']['pos']:.2f}, neg={sentiment_data['sentiment_scores']['neg']:.2f}, neu={sentiment_data['sentiment_scores']['neu']:.2f}, compound={sentiment_data['sentiment_scores']['compound']:.2f}
+        - Intent: {sentiment_data['intent']}
+        - Formality: {sentiment_data['formality']}
+        - Audience: {sentiment_data['audience']}
 
-Please provide specific, actionable feedback to improve this email.
-"""
+        Please provide specific, actionable feedback to improve this email.
+    """
     discourse.append({"role": "user", "content": input_format})
     response = client.chat.completions.create(model="gpt-4", messages=discourse)
     reply = response.choices[0].message.content
@@ -173,5 +174,8 @@ def gpt_edit_email(text, detected_sentiment_data, target_sentiment_data=None):
         function_call={"name": "edit_email"},
     )
     fn_call = response.choices[0].message.function_call
-    output = json.loads(fn_call.arguments)
+    try:
+        output = json.loads(fn_call.arguments)
+    except json.JSONDecodeError:
+        output = fix_and_parse(fn_call.arguments)
     return output

@@ -2,6 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Email Assistant", layout="wide")
 
+
 # Cache resource loading
 @st.cache_resource
 def load_resources():
@@ -81,228 +82,255 @@ with tab_chat:
 
 # === Tab 2: Email Editor ===
 with tab_emailassistant:
-    st.header("Compose Email")
 
-    # Mode selection
-    current_mode = st.radio("Choose Mode", ["Auto", "Guided"], index=0, horizontal=True)
+    compose_tab, preview_tab, analysis_tab = st.tabs(["Compose", "Preview", "Analysis"])
 
-    # Check if the mode changed from previous selection
-    if st.session_state.get("prev_mode", "") != current_mode:
-        for k in ("opt_subject", "opt_salutation", "opt_closing", "opt_body", "sentiment"):
-            st.session_state[k] = "" if k != "sentiment" else {}
-        for raw_k in (
-            "opt_subject_raw",
-            "opt_salutation_raw",
-            "opt_closing_raw",
-            "opt_body_raw",
-        ):
-            if raw_k in st.session_state:
-                del st.session_state[raw_k]
+    with compose_tab:
+        st.header("Compose Email")
 
-    st.session_state["mode"] = current_mode
-    st.session_state["prev_mode"] = current_mode
+        # Mode selection
+        current_mode = st.radio(
+            "Choose Mode", ["Auto", "Guided"], index=0, horizontal=True
+        )
 
-    # Guided mode settings
-    if current_mode == "Guided":
-        st.subheader("Target Tone Preferences")
-        col1, col2, col3 = st.columns(3)
+        # Check if the mode changed from previous selection
+        if st.session_state.get("prev_mode", "") != current_mode:
+            for k in (
+                "opt_subject",
+                "opt_salutation",
+                "opt_closing",
+                "opt_body",
+                "sentiment",
+            ):
+                st.session_state[k] = "" if k != "sentiment" else {}
+            for raw_k in (
+                "opt_subject_raw",
+                "opt_salutation_raw",
+                "opt_closing_raw",
+                "opt_body_raw",
+            ):
+                if raw_k in st.session_state:
+                    del st.session_state[raw_k]
 
-        with col1:
-            st.selectbox(
-                "Intent",
-                ["follow-up", "inform", "request"],
-                index=0,
-                key="target_intent",
-            )
-        with col2:
-            st.selectbox(
-                "Formality", ["formal", "neutral", "informal"], key="target_formality"
-            )
-        with col3:
-            st.selectbox(
-                "Audience",
-                ["professional", "personal", "general"],
-                key="target_audience",
-            )
+        st.session_state["mode"] = current_mode
+        st.session_state["prev_mode"] = current_mode
 
-    # Email input and suggestions layout
-    col_inputs, col_suggestions = st.columns([2, 1])
+        # Email input and suggestions layout
+        col_inputs, col_suggestions = st.columns([3, 2])
 
-    # Email input form
-    with col_inputs:
-        st.text_input("Subject", key="persistent_subject")
-        st.text_input("From (required)", key="persistent_sender")
-        st.text_input("To (required)", key="persistent_recipient")
-        st.text_area("Body (required)", key="persistent_body", height=200)
+        # Email input form
+        with col_inputs:
+            st.text_input("Subject", key="persistent_subject")
+            st.text_input("From (required)", key="persistent_sender")
+            st.text_input("To (required)", key="persistent_recipient")
+            st.text_area("Body (required)", key="persistent_body", height=200)
+            if current_mode == "Guided":
+                with st.expander("Tone Settings", expanded=True):
+                    st.markdown("##### Set your desired email tone")
+                    col1, col2, col3 = st.columns(3)
 
-        if st.button("Generate suggestions", type="primary"):
-            # Validate required fields
-            required_fields = {
-                "sender": st.session_state.persistent_sender,
-                "recipient": st.session_state.persistent_recipient,
-                "body": st.session_state.persistent_body,
-            }
+                    with col1:
+                        st.selectbox(
+                            "Intent",
+                            ["follow-up", "inform", "request"],
+                            index=0,
+                            key="target_intent",
+                            help="What is the main purpose of your email?",
+                        )
+                    with col2:
+                        st.selectbox(
+                            "Formality",
+                            ["formal", "neutral", "informal"],
+                            key="target_formality",
+                            help="How formal should your email be?",
+                        )
+                    with col3:
+                        st.selectbox(
+                            "Audience",
+                            ["professional", "personal", "general"],
+                            key="target_audience",
+                            help="Who will be reading your email?",
+                        )
 
-            missing = [field for field, value in required_fields.items() if not value]
+            if st.button("Generate suggestions", type="primary"):
+                # Validate required fields
+                required_fields = {
+                    "sender": st.session_state.persistent_sender,
+                    "recipient": st.session_state.persistent_recipient,
+                    "body": st.session_state.persistent_body,
+                }
 
-            if missing:
-                st.error(f"Missing field(s): {', '.join(missing)}", icon="🚨")
-            else:
-                # Reset suggestion state
-                for k in ("opt_subject", "opt_salutation", "opt_closing", "opt_body"):
-                    st.session_state[k] = ""
-                for raw_k in (
-                    "opt_subject_raw",
-                    "opt_salutation_raw",
-                    "opt_closing_raw",
-                    "opt_body_raw",
-                ):
-                    if raw_k in st.session_state:
-                        del st.session_state[raw_k]
+                missing = [
+                    field for field, value in required_fields.items() if not value
+                ]
 
-                # Format email for analysis
-                email_text = "\n\n".join(
-                    [
-                        f"Subject: {st.session_state.persistent_subject}".strip(),
-                        f"From: {st.session_state.persistent_sender}".strip(),
-                        st.session_state.persistent_body.strip(),
-                        f"To: {st.session_state.persistent_recipient}".strip(),
-                    ]
-                )
-
-                # Generate suggestions
-                with st.spinner("Generating suggestions..."):
-                    if current_mode == "Auto":
-                        result = get_edits(email_text)
-                    else:
-                        target = {
-                            "intent": st.session_state.target_intent,
-                            "formality": st.session_state.target_formality,
-                            "audience": st.session_state.target_audience,
-                        }
-                        result = get_edits(email_text, mode="Guided", target=target)
-
-                    st.session_state.sentiment = result
-                    st.rerun()
-
-    # Suggestions panel
-    with col_suggestions:
-        st.header("Subject/Greeting/Closing Suggestions")
-
-        if st.session_state.sentiment:
-            # Subject suggestions
-            opts = st.session_state.sentiment["Subjects"]
-            choice = st.selectbox(
-                "Subject:",
-                ["(keep mine)"] + opts,
-                index=0,
-                key="opt_subject_raw",
-            )
-            st.session_state.opt_subject = (
-                choice
-                if choice != "(keep mine)"
-                else st.session_state.persistent_subject
-            )
-
-            # Salutation suggestions
-            salutations = st.session_state.sentiment["Salutations"]
-            choice = st.selectbox(
-                "Salutation:",
-                ["(none)"] + salutations,
-                index=0,
-                key="opt_salutation_raw",
-            )
-            st.session_state.opt_salutation = choice if choice != "(none)" else ""
-
-            # Closing suggestions
-            closings = st.session_state.sentiment["Closings"]
-            choice = st.selectbox(
-                "Closing:",
-                ["(none)"] + closings,
-                index=0,
-                key="opt_closing_raw",
-            )
-            st.session_state.opt_closing = choice if choice != "(none)" else ""
-        else:
-            st.info("Click **Generate suggestions** to see options.")
-
-    # Body suggestions
-    st.subheader("📄 Body Suggestions")
-    bodies = st.session_state.sentiment.get("Bodies", [])
-
-    if bodies:
-        # Add original body to suggestions
-        bodies.append(st.session_state.persistent_body)
-
-        # Display body options
-        cols = st.columns(4)
-        for i, (col, text) in enumerate(zip(cols, bodies)):
-            with col:
-                if i == len(bodies) - 1:
-                    st.markdown("**Original Body**")
+                if missing:
+                    st.error(f"Missing field(s): {', '.join(missing)}", icon="🚨")
                 else:
-                    st.markdown(f"**Option {i+1}**")
+                    # Reset suggestion state
+                    for k in (
+                        "opt_subject",
+                        "opt_salutation",
+                        "opt_closing",
+                        "opt_body",
+                    ):
+                        st.session_state[k] = ""
+                    for raw_k in (
+                        "opt_subject_raw",
+                        "opt_salutation_raw",
+                        "opt_closing_raw",
+                        "opt_body_raw",
+                    ):
+                        if raw_k in st.session_state:
+                            del st.session_state[raw_k]
 
-                st.text_area(
-                    "Suggestion text",
-                    text,
-                    height=150,
-                    disabled=True,
-                    key=f"preview_{i}",
+                    # Format email for analysis
+                    email_text = "\n\n".join(
+                        [
+                            f"Subject: {st.session_state.persistent_subject}".strip(),
+                            f"From: {st.session_state.persistent_sender}".strip(),
+                            st.session_state.persistent_body.strip(),
+                            f"To: {st.session_state.persistent_recipient}".strip(),
+                        ]
+                    )
+
+                    # Generate suggestions
+                    with st.spinner("Generating suggestions..."):
+                        if current_mode == "Auto":
+                            result = get_edits(email_text)
+                        else:
+                            target = {
+                                "intent": st.session_state.target_intent,
+                                "formality": st.session_state.target_formality,
+                                "audience": st.session_state.target_audience,
+                            }
+                            result = get_edits(email_text, mode="Guided", target=target)
+
+                        st.session_state.sentiment = result
+                        st.rerun()
+
+        # Suggestions panel
+        with col_suggestions:
+            st.header("Suggestions")
+
+            if st.session_state.sentiment:
+                with st.container(border=True):
+                    # Subject suggestions
+                    opts = st.session_state.sentiment["Subjects"]
+                    choice = st.selectbox(
+                        "Subject:",
+                        ["(keep mine)"] + opts,
+                        index=0,
+                        key="opt_subject_raw",
+                    )
+                    st.session_state.opt_subject = (
+                        choice
+                        if choice != "(keep mine)"
+                        else st.session_state.persistent_subject
+                    )
+                    salutations = st.session_state.sentiment["Salutations"]
+                    choice = st.selectbox(
+                        "Salutation:",
+                        ["(none)"] + salutations,
+                        index=0,
+                        key="opt_salutation_raw",
+                    )
+                    st.session_state.opt_salutation = (
+                        choice if choice != "(none)" else ""
+                    )
+
+                    closings = st.session_state.sentiment["Closings"]
+                    choice = st.selectbox(
+                        "Closing:",
+                        ["(none)"] + closings,
+                        index=0,
+                        key="opt_closing_raw",
+                    )
+                    st.session_state.opt_closing = choice if choice != "(none)" else ""
+            else:
+                st.info(
+                    "Click **Generate suggestions** to see suggestions for improving your email."
                 )
 
-                if st.button(
-                    f"Select Option {i+1}", key=f"select_{i}", type="secondary"
-                ):
-                    st.session_state.opt_body = text
-    else:
-        st.info("Generate suggestions to see body options.")
+        # Body suggestions
+        bodies = st.session_state.sentiment.get("Bodies", [])
+        if bodies:
+            display_bodies = bodies.copy()
+            display_bodies.append(st.session_state.persistent_body)
+            st.markdown("### Body Suggestions")
+            # Create tabs
+            tabs = st.tabs([f"Option {i+1}" for i in range(len(bodies))] + ["Original"])
+            for i, (tab, text) in enumerate(zip(tabs, display_bodies)):
+                with tab:
+                    if i == len(bodies):  # Check against original bodies length
+                        st.markdown("**Original Body**")
+                    else:
+                        st.markdown(f"**Option {i+1}**")
 
-    # Preview and Sentiment tabs
-    preview_tab, scores_tab = st.tabs(["Email Preview", "Sentiment Analysis"])
+                    st.text_area(
+                        "Suggestion text",
+                        text,
+                        height=150,
+                        disabled=True,
+                        key=f"preview_{i}",
+                    )
 
-    # Prepare preview content
-    subject = st.session_state.opt_subject or st.session_state.persistent_subject
-    salutation = st.session_state.opt_salutation
-    body = st.session_state.opt_body or st.session_state.persistent_body
-    closing = st.session_state.opt_closing
-    sender = st.session_state.persistent_sender
+                    # Use a more descriptive button label
+                    button_label = f"Select Option {i+1}"
 
-    preview_lines = []
-    if subject:
-        preview_lines.append(f"Subject: {subject}")
-    if salutation:
-        preview_lines.append(salutation)
-    preview_lines.append(body)
-    if closing:
-        preview_lines.append(closing)
-    preview_lines.append(sender)
+                    if st.button(button_label, key=f"select_{i}", type="secondary"):
+                        st.session_state.opt_body = text
 
-    preview_text = "\n\n".join(preview_lines)
-
-    # Preview tab
     with preview_tab:
-        st.subheader("Final Email Preview")
-        st.code(preview_text, language="text")
+        # Preview and Sentiment tabs
+        st.markdown("### Email Preview")
+        # Prepare preview content
+        subject = st.session_state.opt_subject or st.session_state.persistent_subject
+        salutation = st.session_state.opt_salutation
+        body = st.session_state.opt_body or st.session_state.persistent_body
+        closing = st.session_state.opt_closing
+        sender = st.session_state.persistent_sender
 
-    # Sentiment analysis tab
-    with scores_tab:
-        if st.session_state.sentiment:
+        preview_lines = []
+        if subject:
+            preview_lines.append(f"Subject: {subject}")
+        if salutation:
+            preview_lines.append(salutation)
+        preview_lines.append(body)
+        if closing:
+            preview_lines.append(closing)
+        preview_lines.append(sender)
+
+        preview_text = "\n\n".join(preview_lines)
+        st.code(preview_text, language="text")
+        st.download_button(
+            "Download Email",
+            preview_text,
+            file_name="email_preview.txt",
+            mime="text/plain",
+        )
+
+    with analysis_tab:
+        st.markdown("### Email Analysis")
+
+        if st.session_state.get("sentiment"):
             sentiment_data = analyze_sentiment(preview_text)
             sent_cat = sentiment_data["sentiment_category"]
             cat_colors = {"positive": "green", "negative": "red", "neutral": "gray"}
 
-            # Overall sentiment
-            st.subheader("Overall Sentiment")
+            # Overall sentiment with better visualization
+            st.markdown("#### Overall Impression")
+
             sentiment_col, gauge_col = st.columns([1, 1])
             with sentiment_col:
                 st.markdown(
-                    f"### <span style='color:{cat_colors.get(sent_cat, 'black')}'>{sent_cat.capitalize()}</span>",
+                    f"<h3 style='color:{cat_colors.get(sent_cat, 'black')}'>{sent_cat.capitalize()}</h3>",
                     unsafe_allow_html=True,
                 )
 
-            # Sentiment scores
-            st.subheader("Sentiment Breakdown")
+            # Sentiment scores with better visualization
+            st.markdown("#### Sentiment Breakdown")
+
             pos = sentiment_data["sentiment_scores"]["pos"]
             neg = sentiment_data["sentiment_scores"]["neg"]
             neu = sentiment_data["sentiment_scores"]["neu"]
@@ -314,18 +342,24 @@ with tab_emailassistant:
             score_cols[2].metric("Neutral", f"{neu:.2f}")
             score_cols[3].metric("Compound", f"{comp:.2f}")
 
-            # Email characteristics
-            st.subheader("Email Characteristics")
-            attribute_cols = st.columns(3)
+            # Email characteristics with better visualization
+            st.markdown("#### Email Characteristics")
 
-            with attribute_cols[0]:
-                intent = sentiment_data["intent"]
-                st.metric("Intent", intent.capitalize() if intent else "N/A")
+            with st.container(border=True):
+                attribute_cols = st.columns(3)
 
-            with attribute_cols[1]:
-                formality = sentiment_data["formality"]
-                st.metric("Formality", formality.capitalize() if formality else "N/A")
+                with attribute_cols[0]:
+                    intent = sentiment_data["intent"]
+                    st.metric("Intent", intent.capitalize() if intent else "N/A")
 
-            with attribute_cols[2]:
-                audience = sentiment_data["audience"]
-                st.metric("Audience", audience.capitalize() if audience else "N/A")
+                with attribute_cols[1]:
+                    formality = sentiment_data["formality"]
+                    st.metric(
+                        "Formality", formality.capitalize() if formality else "N/A"
+                    )
+
+                with attribute_cols[2]:
+                    audience = sentiment_data["audience"]
+                    st.metric("Audience", audience.capitalize() if audience else "N/A")
+        else:
+            st.info("Generate suggestions first to see analysis of your email.")
