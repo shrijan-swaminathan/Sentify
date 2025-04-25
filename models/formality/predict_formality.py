@@ -1,6 +1,6 @@
 from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
 
-MODEL_DIR = "out/formality_reg"
+MODEL_DIR = "/out/formality_reg"
 
 # load tokenizer & model
 tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)

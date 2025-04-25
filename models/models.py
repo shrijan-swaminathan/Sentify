@@ -2,6 +2,9 @@ import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from transformers import pipeline
 from models.formality.sentence_level_formality import get_sentence_formality
+from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import torch
 
 # Download VADER lexicon if not already downloaded
 nltk.download("vader_lexicon")
@@ -40,9 +43,14 @@ def analyze_sentiment(text):
 
 
 def analyze_intent(text):
-    labels = ["inform", "request", "follow-up"]
-    out = _intent_clf([text], candidate_labels=labels, batch_size=1, multi_label=False)[0]
-    return out["labels"][0]
+    tokenizer = AutoTokenizer.from_pretrained("parvk11/intent_classification_model")
+    model = AutoModelForSequenceClassification.from_pretrained("parvk11/intent_classification_model")
+    inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True)
+    outputs = model(**inputs)
+    probs = torch.nn.functional.softmax(outputs.logits, dim=1)
+    pred = torch.argmax(probs, dim=1).item()
+    reverse_label_map = {0: 'follow-up', 1: 'request', 2: 'inform'}
+    return reverse_label_map[pred]
     # return None
 
 
@@ -52,12 +60,14 @@ def analyze_formality(text):
 
 
 def analyze_audience(text):
-    labels = ["professional", "personal", "general"]
-    out = _audience_clf(
-        [text], candidate_labels=labels, batch_size=1, multi_label=False
-    )[0]
-    return out["labels"][0]
-    # return None
+    tokenizer = AutoTokenizer.from_pretrained("parvk11/audience_classifier_model")
+    model = AutoModelForSequenceClassification.from_pretrained("parvk11/audience_classifier_model")
+    inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True)
+    outputs = model(**inputs)
+    probs = torch.nn.functional.softmax(outputs.logits, dim=1)
+    pred = torch.argmax(probs, dim=1).item()
+    reverse_label_map = {0: 'professional', 1: 'personal', 2: 'general'}
+    return reverse_label_map[pred]
 
 
 if __name__ == "__main__":
