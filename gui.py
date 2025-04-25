@@ -5,7 +5,7 @@ st.set_page_config(page_title="Email Assistant", layout="wide")
 # Cache resource loading
 @st.cache_resource
 def load_resources():
-    from models.sentiment_model import analyze
+    from models.models import analyze
     from gpt import gpt_feedback, gpt_generate_and_analyze, gpt_edit_email
     return analyze, gpt_feedback, gpt_generate_and_analyze, gpt_edit_email
 
