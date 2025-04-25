@@ -1,14 +1,13 @@
 import streamlit as st
 from gpt import gpt, gpt_edit_email
-from sentiment_model import analyze_sentiment
+from models.sentiment_model import analyze
 
 def chatbot_response(input_text):
-    sentiment = analyze_sentiment(input_text)
+    sentiment = analyze(input_text)
     return gpt(input_text, sentiment)
 
-
 def get_edits(input_text):
-    sentiment = analyze_sentiment(input_text)
+    sentiment = analyze(input_text)
     sentiment_data = gpt_edit_email(input_text, sentiment)
     return sentiment_data
 
@@ -221,7 +220,7 @@ with tab_emailassistant:
     # Sentiment analysis tab content
     with scores_tab:
         if st.session_state.sentiment:
-            sentiment_data = analyze_sentiment(preview_text)
+            sentiment_data = analyze(preview_text)
 
             # Overall sentiment with visual indicator
             sent_cat = sentiment_data["sentiment_category"]
