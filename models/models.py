@@ -2,7 +2,6 @@ import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from transformers import pipeline
 from models.formality.sentence_level_formality import get_sentence_formality
-from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 
@@ -51,7 +50,6 @@ def analyze_intent(text):
     pred = torch.argmax(probs, dim=1).item()
     reverse_label_map = {0: 'follow-up', 1: 'request', 2: 'inform'}
     return reverse_label_map[pred]
-    # return None
 
 
 def analyze_formality(text):
@@ -73,5 +71,5 @@ def analyze_audience(text):
 if __name__ == "__main__":
     # Example usage
     email_text = "I am very happy with the service."
-    sentiment = analyze_sentiment(email_text)
+    sentiment = analyze(email_text)
     print(sentiment)

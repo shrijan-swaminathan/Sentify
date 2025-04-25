@@ -51,6 +51,9 @@ def initialize_session_state():
         "target_intent": "",
         "target_formality": "",
         "target_audience": "",
+        "chatbot_target_intent": "",
+        "chatbot_target_formality": "",
+        "chatbot_target_audience": "",
         "messages": [],
     }
 
@@ -86,7 +89,9 @@ with tab_chat:
                 st.rerun()
 
     # Radio button to choose mode
-    mode = st.radio("Select Mode", ["Generate/Revise Email", "Feedback Only"], horizontal=True)
+    mode = st.radio("Select Mode", ["Generate Email", "Feedback Only"], horizontal=True)
+    if mode == "Generate Email":
+        tone_mode = current_mode = st.radio("Choose Tone Mode", ["Auto", "Guided"], index=0, horizontal=True)
 
     # Split screen: chat on left, preview/analysis on right
     col_chat, col_email = st.columns([1, 2], gap="large")
@@ -100,32 +105,66 @@ with tab_chat:
 
         if mode == "Generate Email":
             user_input = st.chat_input("Type your prompt...")
+            if tone_mode == "Guided":
+                with st.expander("Tone Settings", expanded=True):
+                    st.markdown("##### Set your desired email tone")
+                    col1, col2, col3 = st.columns(3)
+
+                    with col1:
+                        st.selectbox(
+                            "Intent",
+                            ["follow-up", "inform", "request"],
+                            index=0,
+                            key="chatbot_target_intent",
+                            help="What is the main purpose of your email?",
+                        )
+                    with col2:
+                        st.selectbox(
+                            "Formality",
+                            ["formal", "neutral", "informal"],
+                            key="chatbot_target_formality",
+                            help="How formal should your email be?",
+                        )
+                    with col3:
+                        st.selectbox(
+                            "Audience",
+                            ["professional", "personal", "general"],
+                            key="chatbot_target_audience",
+                            help="Who will be reading your email?",
+                        )
         else:
             user_input = st.chat_input("Type your email content...")
-        
 
         if user_input:
-            st.session_state.messages.append({"role": "user", "content": user_input})
+            with st.spinner("Generating suggestions..."):
+                st.session_state.messages.append({"role": "user", "content": user_input})
 
-            if mode == "Generate Email":
-                generated_email, sentiment_data = gpt_generate_and_analyze(
-                    user_input, analyze
-                )
-                st.session_state.latest_email = generated_email
-                st.session_state.latest_analysis = sentiment_data
-                st.session_state.messages.append(
-                    {"role": "assistant", "content": generated_email}
-                )
-            else:  # Feedback Only
-                sentiment_data = analyze(user_input)
-                st.session_state.latest_email = user_input
-                st.session_state.latest_analysis = sentiment_data
-                feedback = gpt_feedback(user_input, sentiment_data)
-                st.session_state.messages.append(
-                    {"role": "assistant", "content": feedback}
-                )
-
-            st.rerun()
+                if mode == "Generate Email":
+                    targets = {}
+                    if tone_mode == "Guided":
+                        targets = {
+                            "intent": st.session_state.chatbot_target_intent,
+                            "formality": st.session_state.chatbot_target_formality,
+                            "audience": st.session_state.chatbot_target_audience,
+                        }
+                    
+                    generated_email, sentiment_data = gpt_generate_and_analyze(
+                        user_input, analyze, targets
+                    )
+                    st.session_state.latest_email = generated_email
+                    st.session_state.latest_analysis = sentiment_data
+                    st.session_state.messages.append(
+                        {"role": "assistant", "content": generated_email}
+                    )
+                else:  # Feedback Only
+                    sentiment_data = analyze(user_input)
+                    st.session_state.latest_email = user_input
+                    st.session_state.latest_analysis = sentiment_data
+                    feedback = gpt_feedback(user_input, sentiment_data)
+                    st.session_state.messages.append(
+                        {"role": "assistant", "content": feedback}
+                    )
+                st.rerun()
 
         if st.button("Clear Chat 🗑️", use_container_width=True):
             st.session_state.show_clear_dialog = True

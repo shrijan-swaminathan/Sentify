@@ -22,7 +22,7 @@ feedback_instructions = """
     Keep your feedback concise, constructive, and actionable. Focus on 2-3 key improvements that would have the most impact.
 """
 gen_email_instructions = """
-    You are an email generator. Write a complete, professional email based on the user's request.
+    You are an email generator. Write a complete email based on the user's request. Make sure not to write anything other than just the email
     Focus on clarity, appropriate tone, and effectiveness.
 """
 
@@ -110,8 +110,20 @@ def gpt_feedback(text, sentiment_data, discourse=feedback_discourse):
         discourse.pop(1)
     return reply
 
-def gpt_generate_and_analyze(text, analyze_function, discourse=generation_discourse):
-    discourse.append({"role": "user", "content": text})
+def gpt_generate_and_analyze(text, analyze_function, targets=None, discourse=generation_discourse):
+    input_format = f"""
+    Text to use to generate the email:
+    {text}
+"""
+    if targets:
+        input_format += f"""
+    The user has requested the following targets for the input (try to reach as much of these as possible):
+    Target Metrics (User-Specified):
+    - Intent: {targets['intent']}
+    - Formality: {targets['formality']}
+    - Audience: {targets['audience']}
+"""
+    discourse.append({"role": "user", "content": input_format})
     response = client.chat.completions.create(model="gpt-4o", messages = discourse)
     generated_email = response.choices[0].message.content.strip()
     sentiment_data = analyze_function(generated_email)
