@@ -1,13 +1,13 @@
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-# from transformers import pipeline
-# from formality.predict_formality import getformality
+from transformers import pipeline
+from models.formality.predict_formality import getformality
 
 # Download VADER lexicon if not already downloaded
 nltk.download("vader_lexicon")
-# ZSC_MODEL = "facebook/bart-large-mnli"
-# _intent_clf = pipeline("zero-shot-classification", model=ZSC_MODEL)
-# _audience_clf = pipeline("zero-shot-classification", model=ZSC_MODEL)
+ZSC_MODEL = "facebook/bart-large-mnli"
+_intent_clf = pipeline("zero-shot-classification", model=ZSC_MODEL)
+_audience_clf = pipeline("zero-shot-classification", model=ZSC_MODEL)
 
 def analyze(text):
     # get sentiment, intent, formality, and audience
@@ -40,24 +40,24 @@ def analyze_sentiment(text):
 
 
 def analyze_intent(text):
-    # labels = ["inform", "request", "follow-up"]
-    # out = _intent_clf([text], candidate_labels=labels, batch_size=1, multi_label=False)[0]
-    # return out["labels"][0]
-    return None
+    labels = ["inform", "request", "follow-up"]
+    out = _intent_clf([text], candidate_labels=labels, batch_size=1, multi_label=False)[0]
+    return out["labels"][0]
+    # return None
 
 
 def analyze_formality(text):
-    # return getformality(text)
-    return None
+    return getformality(text)
+    # return None
 
 
 def analyze_audience(text):
-    # labels = ["professional", "personal", "general"]
-    # out = _audience_clf(
-    #     [text], candidate_labels=labels, batch_size=1, multi_label=False
-    # )[0]
-    # return out["labels"][0]
-    return None
+    labels = ["professional", "personal", "general"]
+    out = _audience_clf(
+        [text], candidate_labels=labels, batch_size=1, multi_label=False
+    )[0]
+    return out["labels"][0]
+    # return None
 
 
 if __name__ == "__main__":
