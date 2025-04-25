@@ -8,9 +8,13 @@ from transformers import (
     Trainer,
     AutoConfig,
 )
+from huggingface_hub import whoami
 
 model_id = "roberta-base"
 dataset_id = "osyvokon/pavlick-formality-scores"
+repo_name = "formality-roberta"
+username = whoami()["name"]
+hub_model_id = f"{username}/{repo_name}"
 
 formality_feature = ClassLabel(
     num_classes=3,
@@ -78,7 +82,9 @@ training_args = TrainingArguments(
     load_best_model_at_end=True,
     save_total_limit=2,
     report_to="tensorboard",
-    push_to_hub=False,
+    push_to_hub=True,
+    hub_model_id=hub_model_id,
+    hub_strategy="end",
     fp16=True,
 )
 
@@ -92,5 +98,6 @@ trainer = Trainer(
 
 if __name__ == "__main__":
     trainer.train()
-    trainer.save_model("out/formality_reg")
-    tokenizer.save_pretrained("out/formality_reg")
+    trainer.push_to_hub()
+    tokenizer.push_to_hub(hub_model_id)
+

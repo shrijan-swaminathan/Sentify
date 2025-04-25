@@ -1,17 +1,15 @@
 from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
 
-MODEL_DIR = "out/formality_reg"
+MODEL_REPO = "rpangal/formality-roberta"
 
-# load tokenizer & model
-tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
-model     = AutoModelForSequenceClassification.from_pretrained(MODEL_DIR)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_REPO)
+model     = AutoModelForSequenceClassification.from_pretrained(MODEL_REPO)
 
-# build a text-classification pipeline
 classifier = pipeline(
     "text-classification",
     model=model,
     tokenizer=tokenizer,
-    device=0            
+    device=0
 )
 
 def getformality(text):
