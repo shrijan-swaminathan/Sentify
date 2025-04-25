@@ -1,4 +1,5 @@
 import streamlit as st
+
 st.set_page_config(page_title="Email Assistant", layout="wide")
 
 
@@ -7,7 +8,9 @@ st.set_page_config(page_title="Email Assistant", layout="wide")
 def load_resources():
     from models.models import analyze
     from gpt import gpt_feedback, gpt_generate_and_analyze, gpt_edit_email
+
     return analyze, gpt_feedback, gpt_generate_and_analyze, gpt_edit_email
+
 
 # Load all resources at once
 analyze, gpt_feedback, gpt_generate_and_analyze, gpt_edit_email = load_resources()
@@ -17,8 +20,10 @@ def chatbot_response(input_text):
     sentiment = analyze(input_text)
     return gpt_feedback(input_text, sentiment)
 
+
 def generate_email_response(input_text):
     return gpt_generate_and_analyze(input_text, analyze)
+
 
 def get_edits(input_text, mode="Auto", target=None):
     sentiment = analyze(input_text)
@@ -26,7 +31,9 @@ def get_edits(input_text, mode="Auto", target=None):
         return gpt_edit_email(input_text, sentiment)
     return gpt_edit_email(input_text, sentiment, target)
 
+
 tab_chat, tab_emailassistant = st.tabs(["Chatbot & Feedback", "Email Assistant"])
+
 
 def initialize_session_state():
     """Initialize all session state variables if they don't exist"""
@@ -58,14 +65,17 @@ initialize_session_state()
 # === Tab 1: Chatbot & Feedback ===
 with tab_chat:
     st.header("Chat-based Email Revision Assistant")
+
     # Confirmation Dialog to clear chat
     @st.dialog("Clear Chat")
     def confirm_clear_chat():
-        st.warning("Are you sure you want to clear the chat? This cannot be undone.", icon="⚠️")
+        st.warning(
+            "Are you sure you want to clear the chat? This cannot be undone.", icon="⚠️"
+        )
         col1, col2 = st.columns(2)
         with col1:
             if st.button("Cancel", key="cancel_clear"):
-                st.session_state.show_clear_dialog = False  # Just close dialog
+                st.session_state.show_clear_dialog = False
                 st.rerun()
         with col2:
             if st.button("Yes, clear chat", key="confirm_clear"):
@@ -74,47 +84,65 @@ with tab_chat:
                 st.session_state.latest_analysis = {}
                 st.session_state.show_clear_dialog = False
                 st.rerun()
-    # Split the screen into two columns: left (chat), right (generated email + analysis)
-    col_chat, col_email  = st.columns([1, 2], gap="large")
-    # ---- LEFT: Chatbot ----
+
+    # Radio button to choose mode
+    mode = st.radio("Select Mode", ["Generate/Revise Email", "Feedback Only"], horizontal=True)
+
+    # Split screen: chat on left, preview/analysis on right
+    col_chat, col_email = st.columns([1, 2], gap="large")
+
     with col_chat:
         st.subheader("Feedback Chat")
-        # Scrollable chat compartment
         with st.container(height=400, border=True):
             for msg in st.session_state.messages:
                 with st.chat_message(msg["role"]):
                     st.markdown(msg["content"])
-        user_input = st.chat_input("Describe the email you want…")
+
+        if mode == "Generate Email":
+            user_input = st.chat_input("Type your prompt...")
+        else:
+            user_input = st.chat_input("Type your email content...")
+        
+
         if user_input:
-            # Generate email and analyze it
-            generated_email, sentiment_data = gpt_generate_and_analyze(
-                user_input, analyze
-            )
-            # Save to session state for right panel
-            st.session_state.latest_email = generated_email
-            st.session_state.latest_analysis = sentiment_data
-            # Add user message to chat history
             st.session_state.messages.append({"role": "user", "content": user_input})
-            # Generate feedback only (not the email itself)
-            feedback = gpt_feedback(generated_email, sentiment_data)
-            st.session_state.messages.append({"role": "assistant", "content": feedback})
+
+            if mode == "Generate Email":
+                generated_email, sentiment_data = gpt_generate_and_analyze(
+                    user_input, analyze
+                )
+                st.session_state.latest_email = generated_email
+                st.session_state.latest_analysis = sentiment_data
+                st.session_state.messages.append(
+                    {"role": "assistant", "content": generated_email}
+                )
+            else:  # Feedback Only
+                sentiment_data = analyze(user_input)
+                st.session_state.latest_email = user_input
+                st.session_state.latest_analysis = sentiment_data
+                feedback = gpt_feedback(user_input, sentiment_data)
+                st.session_state.messages.append(
+                    {"role": "assistant", "content": feedback}
+                )
+
             st.rerun()
-        # Add a clear chat button
+
         if st.button("Clear Chat 🗑️", use_container_width=True):
             st.session_state.show_clear_dialog = True
         if st.session_state.get("show_clear_dialog", False):
             confirm_clear_chat()
-    # ---- RIGHT: Email Preview & Analysis ----
+
     with col_email:
         st.subheader("Generated Email")
         email_tab, analysis_tab = st.tabs(["Email", "Analysis"])
-        if "latest_email" in st.session_state and st.session_state.latest_email:
+        if st.session_state.get("latest_email", ""):
             with email_tab:
                 st.code(st.session_state.latest_email, language="text")
+            with analysis_tab:
                 sentiment_data = st.session_state.latest_analysis
                 sent_cat = sentiment_data["sentiment_category"]
                 cat_colors = {"positive": "green", "negative": "red", "neutral": "gray"}
-            with analysis_tab:
+
                 st.markdown("#### Overall Impression")
                 st.markdown(
                     f"<h3 style='color:{cat_colors.get(sent_cat, 'black')}'>{sent_cat.capitalize()}</h3>",
@@ -134,11 +162,33 @@ with tab_chat:
 
                 st.markdown("#### Email Characteristics")
                 attribute_cols = st.columns(3)
-                attribute_cols[0].metric("Intent", sentiment_data["intent"].capitalize() if sentiment_data["intent"] else "N/A")
-                attribute_cols[1].metric("Formality", sentiment_data["formality"].capitalize() if sentiment_data["formality"] else "N/A")
-                attribute_cols[2].metric("Audience", sentiment_data["audience"].capitalize() if sentiment_data["audience"] else "N/A")
+                attribute_cols[0].metric(
+                    "Intent",
+                    (
+                        sentiment_data["intent"].capitalize()
+                        if sentiment_data["intent"]
+                        else "N/A"
+                    ),
+                )
+                attribute_cols[1].metric(
+                    "Formality",
+                    (
+                        sentiment_data["formality"].capitalize()
+                        if sentiment_data["formality"]
+                        else "N/A"
+                    ),
+                )
+                attribute_cols[2].metric(
+                    "Audience",
+                    (
+                        sentiment_data["audience"].capitalize()
+                        if sentiment_data["audience"]
+                        else "N/A"
+                    ),
+                )
         else:
-            st.info("No generated email yet. Start chatting to create one!")
+            st.info("No email content yet. Use the chat to get started.")
+
 # === Tab 2: Email Editor ===
 with tab_emailassistant:
     compose_tab, preview_tab, analysis_tab = st.tabs(["Compose", "Preview", "Analysis"])
