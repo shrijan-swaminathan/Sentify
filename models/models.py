@@ -1,6 +1,6 @@
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from models.formality.sentence_level_formality import get_sentence_formality
+from models.formality.sentence_level_formality import get_sentence_formality, get_nomatch_formality
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 
@@ -52,6 +52,8 @@ def analyze_formality(text):
     formality = get_sentence_formality(text)['classification']
     return formality
 
+def get_sentence_formality(text, desired_formality):
+    return get_nomatch_formality(text, desired_formality)
 
 def analyze_audience(text):
     tokenizer = AutoTokenizer.from_pretrained("parvk11/audience_classifier_model")

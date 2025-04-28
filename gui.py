@@ -6,14 +6,29 @@ st.set_page_config(page_title="Email Assistant", layout="wide")
 # Cache resource loading
 @st.cache_resource
 def load_resources():
-    from models.models import analyze
+    from models.models import analyze, get_sentence_formality
+    from nltk.tokenize import sent_tokenize
     from gpt import gpt_feedback, gpt_generate_and_analyze, gpt_edit_email
 
-    return analyze, gpt_feedback, gpt_generate_and_analyze, gpt_edit_email
+    return (
+        analyze,
+        get_sentence_formality,
+        gpt_feedback,
+        gpt_generate_and_analyze,
+        gpt_edit_email,
+        sent_tokenize,
+    )
 
 
 # Load all resources at once
-analyze, gpt_feedback, gpt_generate_and_analyze, gpt_edit_email = load_resources()
+(
+    analyze,
+    get_sentence_formality,
+    gpt_feedback,
+    gpt_generate_and_analyze,
+    gpt_edit_email,
+    sent_tokenize,
+) = load_resources()
 
 
 def chatbot_response(input_text):
@@ -32,7 +47,14 @@ def get_edits(input_text, mode="Auto", target=None):
     return gpt_edit_email(input_text, sentiment, target)
 
 
-tab_chat, tab_emailassistant = st.tabs(["Chatbot & Feedback", "Email Assistant"])
+def check_formality(input_text, target_formality):
+    flagged_sentences = get_sentence_formality(input_text, target_formality)
+    return flagged_sentences
+
+
+tab_chat, tab_emailassistant, tab_formality = st.tabs(
+    ["Chatbot & Feedback", "Email Assistant", "Formality Alignment Check"]
+)
 
 
 def initialize_session_state():
@@ -54,6 +76,9 @@ def initialize_session_state():
         "chatbot_target_intent": "",
         "chatbot_target_formality": "",
         "chatbot_target_audience": "",
+        "formality_target": "Neutral",
+        "formality_analysis_result": {},
+        "formality_email_text": {},
         "messages": [],
     }
 
@@ -91,10 +116,12 @@ with tab_chat:
     # Radio button to choose mode
     mode = st.radio("Select Mode", ["Generate Email", "Feedback Only"], horizontal=True)
     if mode == "Generate Email":
-        tone_mode = current_mode = st.radio("Choose Tone Mode", ["Auto", "Guided"], index=0, horizontal=True)
+        tone_mode = current_mode = st.radio(
+            "Choose Tone Mode", ["Auto", "Guided"], index=0, horizontal=True
+        )
 
     # Split screen: chat on left, preview/analysis on right
-    col_chat, col_email = st.columns([1, 2], gap="large")
+    col_chat, col_email = st.columns([2, 3], gap="large")
 
     with col_chat:
         st.subheader("Feedback Chat")
@@ -137,7 +164,9 @@ with tab_chat:
 
         if user_input:
             with st.spinner("Generating suggestions..."):
-                st.session_state.messages.append({"role": "user", "content": user_input})
+                st.session_state.messages.append(
+                    {"role": "user", "content": user_input}
+                )
 
                 if mode == "Generate Email":
                     targets = {}
@@ -147,7 +176,7 @@ with tab_chat:
                             "formality": st.session_state.chatbot_target_formality,
                             "audience": st.session_state.chatbot_target_audience,
                         }
-                    
+
                     generated_email, sentiment_data = gpt_generate_and_analyze(
                         user_input, analyze, targets
                     )
@@ -481,3 +510,115 @@ with tab_emailassistant:
                     st.metric("Audience", audience.capitalize() if audience else "N/A")
         else:
             st.info("Generate suggestions first to see analysis of your email.")
+
+with tab_formality:
+    st.header("Formality Alignment Check")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.subheader("Input Email")
+        salutation = st.text_input("Salutation", key="salutation_input")
+        email_input = st.text_area("Paste your email here:", height=200)
+        closing = st.text_input("Closing", key="closing_input")
+        st.selectbox(
+            "Select Desired Formality",
+            ["Formal", "Neutral", "Informal"],
+            index=1,
+            key="formality_target",
+            help="Select the desired formality level for the email.",
+        )
+        if st.button("Check Formality", type="primary"):
+            if email_input or salutation or closing:
+                with st.spinner("Analyzing formality..."):
+                    # Analyze each section separately
+                    flagged_body = check_formality(
+                        email_input, st.session_state.formality_target.lower()
+                    )
+                    flagged_salutation = check_formality(
+                        salutation, st.session_state.formality_target.lower()
+                    )
+                    flagged_closing = check_formality(
+                        closing, st.session_state.formality_target.lower()
+                    )
+                    st.session_state.formality_analysis_result = {
+                        "salutation": flagged_salutation,
+                        "body": flagged_body,
+                        "closing": flagged_closing,
+                    }
+                    st.session_state.formality_email_text = {
+                        "salutation": salutation,
+                        "body": email_input,
+                        "closing": closing,
+                    }
+            else:
+                st.error(
+                    "Please enter at least one field to check formality.", icon="🚨"
+                )
+
+    with col2:
+        st.subheader("Formality Issues Highlighted")
+        if (
+            "formality_analysis_result" in st.session_state
+            and "formality_email_text" in st.session_state
+        ):
+            original_text = st.session_state.formality_email_text
+            flagged_info = st.session_state.formality_analysis_result
+
+            highlighted_text = ""
+
+            # ---- Handle Salutation ----
+            salutation_text = original_text.get("salutation", "").strip()
+            flagged_salutation = flagged_info.get("salutation", [])
+
+            if salutation_text:
+                if flagged_salutation:
+                    detected_formality = flagged_salutation[0]["detected_formality"]
+                    highlighted_text += f"<u style='color: red'><span style='color:white' title='Detected: {detected_formality.capitalize()}'>{salutation_text}</span></u><br><br>"
+                else:
+                    highlighted_text += f"{salutation_text}<br><br>"
+
+            # ---- Handle Body ----
+            body_text = original_text.get("body", "").strip()
+            flagged_body = flagged_info.get("body", [])
+
+            paragraphs = body_text.split("\n\n")
+
+            for paragraph in paragraphs:
+                paragraph = paragraph.strip()
+                if not paragraph:
+                    continue
+
+                sentences = sent_tokenize(paragraph)
+
+                for sent in sentences:
+                    flagged = False
+                    detected_formality = ""
+
+                    for item in flagged_body:
+                        if sent.strip() == item["sentence"].strip():
+                            flagged = True
+                            detected_formality = item["detected_formality"]
+                            break
+
+                    if flagged:
+                        highlighted_text += f"<u style='color: red'><span style='color: white' title='Detected: {detected_formality.capitalize()}'>{sent}</span></u> "
+                    else:
+                        highlighted_text += f"{sent} "
+                highlighted_text += "<br><br>"  # after paragraph
+            closing_text = original_text.get("closing", "").strip()
+            flagged_closing = flagged_info.get("closing", [])
+
+            if closing_text:
+                if flagged_closing:
+                    detected_formality = flagged_closing[0]["detected_formality"]
+                    highlighted_text += f"<u style='color: red'><span style='color: white' title='Detected: {detected_formality.capitalize()}'>{closing_text}</span></u>"
+                else:
+                    highlighted_text += f"{closing_text}"
+
+            # Final render
+            st.markdown(highlighted_text, unsafe_allow_html=True)
+
+        else:
+            st.info(
+                "Paste your email and click 'Check Formality' to see highlighted results."
+            )
