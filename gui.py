@@ -268,7 +268,7 @@ with tab_chat:
 
 # === Tab 2: Email Editor ===
 with tab_emailassistant:
-    compose_tab, preview_tab, analysis_tab = st.tabs(["Compose", "Preview", "Analysis"])
+    compose_tab, preview_tab= st.tabs(["Compose", "Preview + Analysis"])
     with compose_tab:
         st.header("Compose Email")
         # Mode selection
@@ -477,7 +477,6 @@ with tab_emailassistant:
             file_name="email_preview.txt",
             mime="text/plain",
         )
-    with analysis_tab:
         st.markdown("### Email Analysis")
         if st.session_state.get("sentiment"):
             sentiment_data = analyze(preview_text)
@@ -520,6 +519,7 @@ with tab_emailassistant:
                     st.metric("Audience", audience.capitalize() if audience else "N/A")
         else:
             st.info("Generate suggestions first to see analysis of your email.")
+        
 
 with tab_formality:
     st.header("Formality Alignment Check")
