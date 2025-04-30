@@ -6,13 +6,13 @@ st.set_page_config(page_title="Email Assistant", layout="wide")
 # Cache resource loading
 @st.cache_resource
 def load_resources():
-    from models.models import analyze, get_sentence_formality
+    from models.models import analyze, get_sentence_formality_match
     from nltk.tokenize import sent_tokenize
     from gpt import gpt_feedback, gpt_generate_and_analyze, gpt_edit_email
 
     return (
         analyze,
-        get_sentence_formality,
+        get_sentence_formality_match,
         gpt_feedback,
         gpt_generate_and_analyze,
         gpt_edit_email,
@@ -23,7 +23,7 @@ def load_resources():
 # Load all resources at once
 (
     analyze,
-    get_sentence_formality,
+    get_sentence_formality_match,
     gpt_feedback,
     gpt_generate_and_analyze,
     gpt_edit_email,
@@ -48,7 +48,7 @@ def get_edits(input_text, mode="Auto", target=None):
 
 
 def check_formality(input_text, target_formality):
-    flagged_sentences = get_sentence_formality(input_text, target_formality)
+    flagged_sentences = get_sentence_formality_match(input_text, target_formality)
     return flagged_sentences
 
 
@@ -79,6 +79,7 @@ def initialize_session_state():
         "formality_target": "Neutral",
         "formality_analysis_result": {},
         "formality_email_text": {},
+        "generated_emails": [],
         "messages": [],
     }
 
@@ -163,7 +164,7 @@ with tab_chat:
             user_input = st.chat_input("Type your email content...")
 
         if user_input:
-            with st.spinner("Generating suggestions..."):
+            with st.spinner("Thinking..."):
                 st.session_state.messages.append(
                     {"role": "user", "content": user_input}
                 )
@@ -185,6 +186,7 @@ with tab_chat:
                     st.session_state.messages.append(
                         {"role": "assistant", "content": generated_email}
                     )
+                    st.session_state.generated_emails.append(generated_email)
                 else:  # Feedback Only
                     sentiment_data = analyze(user_input)
                     st.session_state.latest_email = user_input
@@ -193,6 +195,7 @@ with tab_chat:
                     st.session_state.messages.append(
                         {"role": "assistant", "content": feedback}
                     )
+                    st.session_state.generated_emails.append(user_input)
                 st.rerun()
 
         if st.button("Clear Chat 🗑️", use_container_width=True):
@@ -206,6 +209,11 @@ with tab_chat:
         if st.session_state.get("latest_email", ""):
             with email_tab:
                 st.code(st.session_state.latest_email, language="text")
+                with st.expander("Previously Generated Emails", expanded=True):
+                    # Scrollable area
+                    with st.container():
+                        for idx, email in enumerate(st.session_state.generated_emails):
+                            st.code(email, language="text")
             with analysis_tab:
                 sentiment_data = st.session_state.latest_analysis
                 sent_cat = sentiment_data["sentiment_category"]

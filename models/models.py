@@ -52,7 +52,7 @@ def analyze_formality(text):
     formality = get_sentence_formality(text)['classification']
     return formality
 
-def get_sentence_formality(text, desired_formality):
+def get_sentence_formality_match(text, desired_formality):
     return get_nomatch_formality(text, desired_formality)
 
 def analyze_audience(text):
