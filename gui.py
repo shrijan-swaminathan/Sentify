@@ -195,7 +195,6 @@ with tab_chat:
                     st.session_state.messages.append(
                         {"role": "assistant", "content": feedback}
                     )
-                    st.session_state.generated_emails.append(user_input)
                 st.rerun()
 
         if st.button("Clear Chat 🗑️", use_container_width=True):
