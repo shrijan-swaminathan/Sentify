@@ -10,15 +10,17 @@ nltk.download("vader_lexicon")
 def analyze(text):
     # get sentiment, intent, formality, and audience
     sentiment, sentiment_category = analyze_sentiment(text)
-    intent = analyze_intent(text)
+    intent, i_confidence = analyze_intent(text)
     formality = analyze_formality(text)
-    audience = analyze_audience(text)
+    audience, a_confidence = analyze_audience(text)
     result = {
         "sentiment_scores": sentiment,
         "sentiment_category": sentiment_category,
         "intent": intent,
+        "intent_confidence": i_confidence,
         "formality": formality,
         "audience": audience,
+        "audience_confidence": a_confidence,
     }
     return result
 
@@ -44,8 +46,9 @@ def analyze_intent(text):
     outputs = model(**inputs)
     probs = torch.nn.functional.softmax(outputs.logits, dim=1)
     pred = torch.argmax(probs, dim=1).item()
+    confidence = probs[0][pred].item()
     reverse_label_map = {0: 'follow-up', 1: 'request', 2: 'inform'}
-    return reverse_label_map[pred]
+    return reverse_label_map[pred], confidence
 
 
 def analyze_formality(text):
@@ -62,8 +65,9 @@ def analyze_audience(text):
     outputs = model(**inputs)
     probs = torch.nn.functional.softmax(outputs.logits, dim=1)
     pred = torch.argmax(probs, dim=1).item()
+    confidence = probs[0][pred].item()
     reverse_label_map = {0: 'professional', 1: 'personal', 2: 'general'}
-    return reverse_label_map[pred]
+    return reverse_label_map[pred], confidence
 
 
 if __name__ == "__main__":

@@ -208,7 +208,7 @@ with tab_chat:
         if st.session_state.get("latest_email", ""):
             with email_tab:
                 if mode == "Feedback Only":
-                    st.markdown("Generated Email is Same as Input Email")
+                    st.markdown("**Generated Email is Same as Input Email**")
                 st.code(st.session_state.latest_email, language="text")
                 with st.expander("Previously Generated Emails", expanded=True):
                     # Scrollable area
@@ -247,6 +247,9 @@ with tab_chat:
                         else "N/A"
                     ),
                 )
+                attribute_cols[0].markdown(
+                    f"**Confidence:** {sentiment_data.get('intent_confidence', 0):.2%}"
+                )
                 attribute_cols[1].metric(
                     "Formality",
                     (
@@ -263,12 +266,15 @@ with tab_chat:
                         else "N/A"
                     ),
                 )
+                attribute_cols[2].markdown(
+                    f"**Confidence:** {sentiment_data.get('audience_confidence', 0):.2%}"
+                )
         else:
             st.info("No email content yet. Use the chat to get started.")
 
 # === Tab 2: Email Editor ===
 with tab_emailassistant:
-    compose_tab, preview_tab= st.tabs(["Compose", "Preview + Analysis"])
+    compose_tab, preview_tab = st.tabs(["Compose", "Preview + Analysis"])
     with compose_tab:
         st.header("Compose Email")
         # Mode selection
@@ -425,7 +431,9 @@ with tab_emailassistant:
                     display_bodies.append(st.session_state.persistent_body)
                     st.markdown("### Body Suggestions")
                     # Create tabs
-                    tabs = st.tabs([f"Option {i+1}" for i in range(len(bodies))] + ["Original"])
+                    tabs = st.tabs(
+                        [f"Option {i+1}" for i in range(len(bodies))] + ["Original"]
+                    )
                     for i, (tab, text) in enumerate(zip(tabs, display_bodies)):
                         with tab:
                             if i == len(bodies):  # Check against original bodies length
@@ -443,14 +451,16 @@ with tab_emailassistant:
                             # Use a more descriptive button label
                             button_label = f"Select Option {i+1}"
 
-                            if st.button(button_label, key=f"select_{i}", type="secondary"):
+                            if st.button(
+                                button_label, key=f"select_{i}", type="secondary"
+                            ):
                                 st.session_state.opt_body = text
             else:
                 st.info(
                     "Click **Generate suggestions** to see suggestions for improving your email."
                 )
         # Body suggestions
-        
+
     with preview_tab:
         # Preview and Sentiment tabs
         st.markdown("### Email Preview")
@@ -509,6 +519,9 @@ with tab_emailassistant:
                 with attribute_cols[0]:
                     intent = sentiment_data["intent"]
                     st.metric("Intent", intent.capitalize() if intent else "N/A")
+                    st.markdown(
+                        f"**Confidence:** {sentiment_data.get('intent_confidence', 0):.2%}"
+                    )
                 with attribute_cols[1]:
                     formality = sentiment_data["formality"]
                     st.metric(
@@ -517,9 +530,12 @@ with tab_emailassistant:
                 with attribute_cols[2]:
                     audience = sentiment_data["audience"]
                     st.metric("Audience", audience.capitalize() if audience else "N/A")
+                    st.markdown(
+                        f"**Confidence:** {sentiment_data.get('audience_confidence', 0):.2%}"
+                    )
         else:
             st.info("Generate suggestions first to see analysis of your email.")
-        
+
 
 with tab_formality:
     st.header("Formality Alignment Check")
