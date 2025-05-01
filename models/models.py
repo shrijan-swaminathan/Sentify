@@ -35,7 +35,7 @@ def analyze_sentiment(text):
     elif sentiment["compound"] <= -0.05:
         sentiment_category = "negative"
     else:
-        sentiment_category = "negative"
+        sentiment_category = "neutral"
     return sentiment, sentiment_category
 
 
