@@ -536,7 +536,7 @@ with tab_emailassistant:
         else:
             st.info("Generate suggestions first to see analysis of your email.")
 
-
+# line by line formality checker
 with tab_formality:
     st.header("Formality Alignment Check")
     col1, col2 = st.columns(2)
