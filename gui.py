@@ -73,9 +73,11 @@ def initialize_session_state():
         "target_intent": "",
         "target_formality": "",
         "target_audience": "",
+        "target_polarity": "",
         "chatbot_target_intent": "",
         "chatbot_target_formality": "",
         "chatbot_target_audience": "",
+        "chatbot_target_polarity": "",
         "formality_target": "Neutral",
         "formality_analysis_result": {},
         "formality_email_text": {},
@@ -125,7 +127,6 @@ with tab_chat:
     col_chat, col_email = st.columns([2, 3], gap="large")
 
     with col_chat:
-        st.subheader("Feedback Chat")
         with st.container(height=400, border=True):
             for msg in st.session_state.messages:
                 with st.chat_message(msg["role"]):
@@ -136,7 +137,7 @@ with tab_chat:
             if tone_mode == "Guided":
                 with st.expander("Tone Settings", expanded=True):
                     st.markdown("##### Set your desired email tone")
-                    col1, col2, col3 = st.columns(3)
+                    col1, col2, col3, col4 = st.columns(4)
 
                     with col1:
                         st.selectbox(
@@ -160,6 +161,13 @@ with tab_chat:
                             key="chatbot_target_audience",
                             help="Who will be reading your email?",
                         )
+                    with col4:
+                        st.selectbox(
+                            "Polarity",
+                            ["positive", "negative", "neutral"],
+                            key="chatbot_target_polarity",
+                            help="How positive or negative do you want the response to be?",
+                        )
         else:
             user_input = st.chat_input("Type your email content...")
 
@@ -176,6 +184,7 @@ with tab_chat:
                             "intent": st.session_state.chatbot_target_intent,
                             "formality": st.session_state.chatbot_target_formality,
                             "audience": st.session_state.chatbot_target_audience,
+                            "polarity": st.session_state.chatbot_target_polarity,
                         }
 
                     generated_email, sentiment_data = gpt_generate_and_analyze(
@@ -312,7 +321,7 @@ with tab_emailassistant:
             if current_mode == "Guided":
                 with st.expander("Tone Settings", expanded=True):
                     st.markdown("##### Set your desired email tone")
-                    col1, col2, col3 = st.columns(3)
+                    col1, col2, col3, col4 = st.columns(4)
 
                     with col1:
                         st.selectbox(
@@ -335,6 +344,13 @@ with tab_emailassistant:
                             ["professional", "personal", "general"],
                             key="target_audience",
                             help="Who will be reading your email?",
+                        )
+                    with col4:
+                        st.selectbox(
+                            "Polarity",
+                            ["positive", "negative", "neutral"],
+                            key="target_polarity",
+                            help="How positive or negative do you want the response to be?",
                         )
             if st.button("Generate suggestions", type="primary"):
                 # Validate required fields
@@ -383,6 +399,7 @@ with tab_emailassistant:
                                 "intent": st.session_state.target_intent,
                                 "formality": st.session_state.target_formality,
                                 "audience": st.session_state.target_audience,
+                                "polarity": st.session_state.target_polarity
                             }
                             result = get_edits(email_text, mode="Guided", target=target)
 

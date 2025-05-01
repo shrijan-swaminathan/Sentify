@@ -7,7 +7,7 @@ feedback_instructions = """
     You are an email coach assistant that provides constructive feedback on emails.
     
     The input will include sentiment analysis across multiple dimensions:
-    1. Basic sentiment (positive/negative/neutral scores and category)
+    1. Basic polarity (positive/negative/neutral scores and category)
     2. Intent classification (informative, request, persuasive, gratitude, complaint)
     3. Formality level (formal, informal, neutral)
     4. Audience assessment (professional, personal, general)
@@ -23,7 +23,9 @@ feedback_instructions = """
 """
 gen_email_instructions = """
     You are an email generator. Write a complete email based on the user's request. Make sure not to write anything other than just the email
-    Focus on clarity, appropriate tone, and effectiveness.
+    Focus on clarity, appropriate tone, and effectiveness. 
+    If the user requests a negative polarity, you MUST write negative statements and make sure the average polarity of the email output is negative (aka make sure the email generated is a bit rude).
+    If the user requests a positive polarity, you MUST write positive statements and make sure the average polarity of the email output is postive (aka make sure the email generated is a bit more nice).
 """
 
 edit_email_instructions = (
@@ -122,6 +124,7 @@ def gpt_generate_and_analyze(text, analyze_function, targets=None, discourse=gen
     - Intent: {targets['intent']}
     - Formality: {targets['formality']}
     - Audience: {targets['audience']}
+    - Polarity: {targets['polarity']}
 """
     discourse.append({"role": "user", "content": input_format})
     response = client.chat.completions.create(model="gpt-4o", messages = discourse)
@@ -171,11 +174,13 @@ def gpt_edit_email(text, detected_sentiment_data, target_sentiment_data=None):
             - Intent: {target_sentiment_data['intent']}
             - Formality: {target_sentiment_data['formality']}
             - Audience: {target_sentiment_data['audience']}
+            - Polarity: {target_sentiment_data['polarity']}
+            
 
             You're in GUIDED MODE. Please:
             1. Use the detected metrics ONLY as a baseline to understand the email's current state
             2. Transform the email to match the user's specified target metrics
-            3. Focus on shifting the intent, formality, and audience-appropriateness as requested
+            3. Focus on shifting the intent, formality, audience-appropriateness, and overall polarity as requested
             4. Maintain the core message while adapting tone and style
             5. Explain the specific changes you made to achieve the requested metrics
         """
