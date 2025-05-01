@@ -2,7 +2,7 @@ import openai
 import keys
 import json
 from json_repair import repair_json
-
+ai_model_name = "gpt-4o"
 feedback_instructions = """
     You are an email coach assistant that provides constructive feedback on emails.
     
@@ -105,7 +105,7 @@ def gpt_feedback(text, sentiment_data, discourse=feedback_discourse):
         Please provide specific, actionable feedback to improve this email.
     """
     discourse.append({"role": "user", "content": input_format})
-    response = client.chat.completions.create(model="gpt-4", messages=discourse)
+    response = client.chat.completions.create(model=ai_model_name, messages=discourse)
     reply = response.choices[0].message.content
     # trim discourse to not be too large
     if len(discourse) > 10:
@@ -127,7 +127,7 @@ def gpt_generate_and_analyze(text, analyze_function, targets=None, discourse=gen
     - Polarity: {targets['polarity']}
 """
     discourse.append({"role": "user", "content": input_format})
-    response = client.chat.completions.create(model="gpt-4o", messages = discourse)
+    response = client.chat.completions.create(model=ai_model_name, messages = discourse)
     generated_email = response.choices[0].message.content.strip()
     sentiment_data = analyze_function(generated_email)
     return generated_email, sentiment_data
@@ -187,7 +187,7 @@ def gpt_edit_email(text, detected_sentiment_data, target_sentiment_data=None):
 
     messages.append({"role": "user", "content": user_prompt})
     response = client.chat.completions.create(
-        model="gpt-4",
+        model=ai_model_name,
         messages=messages,
         functions=functions,
         function_call={"name": "edit_email"},
