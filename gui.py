@@ -8,7 +8,7 @@ st.set_page_config(page_title="Email Assistant", layout="wide")
 def load_resources():
     from models.models import analyze, get_sentence_formality_match
     from nltk.tokenize import sent_tokenize
-    from gpt import gpt_feedback, gpt_generate_and_analyze, gpt_edit_email
+    from models.gpt import gpt_feedback, gpt_generate_and_analyze, gpt_edit_email
 
     return (
         analyze,
@@ -210,7 +210,7 @@ with tab_chat:
                 if mode == "Feedback Only":
                     st.markdown("**Generated Email is Same as Input Email**")
                 st.code(st.session_state.latest_email, language="text")
-                with st.expander("Previously Generated Emails", expanded=True):
+                with st.expander("Previously Generated Emails", expanded=False):
                     # Scrollable area
                     with st.container():
                         for idx, email in enumerate(st.session_state.generated_emails):

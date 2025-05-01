@@ -1,5 +1,5 @@
 import argparse, sys, json
-from gpt import gpt
+from models.gpt import gpt
 from models.models import analyze
 
 def print_verbose(text, verbose=False, **kwargs):

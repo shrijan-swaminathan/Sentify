@@ -1,10 +1,12 @@
+import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
+# Download VADER lexicon if not already downloaded
+nltk.download('vader_lexicon')
+
 def get_sentiment(text):
-    # initial vader sentiment
     sia = SentimentIntensityAnalyzer()
     sentiment = sia.polarity_scores(text)
-
     # determine overall sentiment
     if sentiment["compound"] >= 0.05:
         sentiment_category = "positive"

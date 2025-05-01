@@ -1,11 +1,7 @@
-import nltk
 from models.formality.sentence_level_formality import get_sentence_formality, get_nomatch_formality
 from models.intent.intent_model import get_intent
 from models.sentiment.sentiment_model import get_sentiment
 from models.audience.audience_model import get_audience
-
-# Download VADER lexicon if not already downloaded
-nltk.download("vader_lexicon")
 
 def analyze(text):
     # get sentiment, intent, formality, and audience
