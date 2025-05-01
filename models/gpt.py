@@ -112,7 +112,7 @@ def gpt_feedback(text, sentiment_data, discourse=feedback_discourse):
         discourse.pop(1)
     return reply
 
-def gpt_generate_and_analyze(text, analyze_function, targets=None, discourse=generation_discourse):
+def gpt_generate_and_analyze(text, analyze_function, targets=None, discourse=generation_discourse, feedback=None, discourse_append=False):
     input_format = f"""
     Text to use to generate the email:
     {text}
@@ -126,6 +126,16 @@ def gpt_generate_and_analyze(text, analyze_function, targets=None, discourse=gen
     - Audience: {targets['audience']}
     - Polarity: {targets['polarity']}
 """
+    if feedback:
+        input_format +="""
+        We have generated feedback for the user and the user wants us to implement it with the current email. The feedback is written as follows:
+        {feedback}
+"""
+    if discourse_append:
+        discourse.append({"role": "user", "content": input_format})
+        sentiment_data = analyze_function(text)
+        return text, sentiment_data
+    
     discourse.append({"role": "user", "content": input_format})
     response = client.chat.completions.create(model=ai_model_name, messages = discourse)
     generated_email = response.choices[0].message.content.strip()

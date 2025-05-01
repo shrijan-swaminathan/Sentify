@@ -78,6 +78,9 @@ def initialize_session_state():
         "chatbot_target_formality": "",
         "chatbot_target_audience": "",
         "chatbot_target_polarity": "",
+        "feedback": "",
+        "feedback_input": False,
+        "feedback_text_for_input": "",
         "formality_target": "Neutral",
         "formality_analysis_result": {},
         "formality_email_text": {},
@@ -132,8 +135,15 @@ with tab_chat:
                 with st.chat_message(msg["role"]):
                     st.markdown(msg["content"])
 
+        
         if mode == "Generate Email":
-            user_input = st.chat_input("Type your prompt...")
+            user_input_key = "chat_input"
+            if st.button("Use feedback for email?"):
+                st.session_state.feedback_input=True
+                user_input = f"Implement the feedback given"
+            else:
+                st.session_state.feedback_input=False
+                user_input = st.chat_input("Type your prompt...", key=user_input_key)
             if tone_mode == "Guided":
                 with st.expander("Tone Settings", expanded=True):
                     st.markdown("##### Set your desired email tone")
@@ -176,8 +186,9 @@ with tab_chat:
                 st.session_state.messages.append(
                     {"role": "user", "content": user_input}
                 )
-
-                if mode == "Generate Email":
+                targets=None
+                discourse_append=None
+                if mode == "Generate Email":                    
                     targets = {}
                     if tone_mode == "Guided":
                         targets = {
@@ -186,24 +197,56 @@ with tab_chat:
                             "audience": st.session_state.chatbot_target_audience,
                             "polarity": st.session_state.chatbot_target_polarity,
                         }
-
-                    generated_email, sentiment_data = gpt_generate_and_analyze(
-                        user_input, analyze, targets
-                    )
-                    st.session_state.latest_email = generated_email
-                    st.session_state.latest_analysis = sentiment_data
+                    discourse_append=False
+                else: # Feedback Only
+                    discourse_append=True
+                generated_email, sentiment_data = gpt_generate_and_analyze(
+                    text=user_input, analyze_function=analyze, targets=targets, discourse_append=discourse_append, feedback=st.session_state.feedback_input
+                )
+                feedback = gpt_feedback(generated_email, sentiment_data)
+                st.session_state.feedback = feedback
+                st.session_state.latest_email = generated_email
+                st.session_state.latest_analysis = sentiment_data
+                st.session_state.generated_emails.append(generated_email)
+                if mode == "Generate Email":
                     st.session_state.messages.append(
                         {"role": "assistant", "content": generated_email}
                     )
-                    st.session_state.generated_emails.append(generated_email)
-                else:  # Feedback Only
-                    sentiment_data = analyze(user_input)
-                    st.session_state.latest_email = user_input
-                    st.session_state.latest_analysis = sentiment_data
-                    feedback = gpt_feedback(user_input, sentiment_data)
+                else: # Feedback only
                     st.session_state.messages.append(
                         {"role": "assistant", "content": feedback}
                     )
+                # if mode == "Generate Email":
+                #     targets = {}
+                #     if tone_mode == "Guided":
+                #         targets = {
+                #             "intent": st.session_state.chatbot_target_intent,
+                #             "formality": st.session_state.chatbot_target_formality,
+                #             "audience": st.session_state.chatbot_target_audience,
+                #             "polarity": st.session_state.chatbot_target_polarity,
+                #         }
+
+                #     generated_email, sentiment_data = gpt_generate_and_analyze(
+                #         user_input, analyze, targets
+                #     )
+                #     st.session_state.latest_email = generated_email
+                #     st.session_state.latest_analysis = sentiment_data
+                #     st.session_state.messages.append(
+                #         {"role": "assistant", "content": generated_email}
+                #     )
+                #     st.session_state.generated_emails.append(generated_email)
+                # else:  # Feedback Only
+                #     initial_email, sentiment_data = gpt_generate_and_analyze(
+                #         user_input, analyze, discourse_append=True
+                #     )
+                #     feedback = gpt_feedback(user_input, sentiment_data)
+                #     st.session_state.messages.append(
+                #         {"role": "assistant", "content": feedback}
+                #     )
+                #     st.session_state.feedback = feedback
+                #     st.session_state.latest_email = initial_email
+                #     st.session_state.latest_analysis = sentiment_data
+                #     st.session_state.generated_emails.append(initial_email)
                 st.rerun()
 
         if st.button("Clear Chat 🗑️", use_container_width=True):
@@ -213,7 +256,7 @@ with tab_chat:
 
     with col_email:
         st.subheader("Generated Email")
-        email_tab, analysis_tab = st.tabs(["Email", "Analysis"])
+        email_tab, analysis_tab, feedback_tab = st.tabs(["Email", "Analysis", "Feedback"])
         if st.session_state.get("latest_email", ""):
             with email_tab:
                 if mode == "Feedback Only":
@@ -278,6 +321,9 @@ with tab_chat:
                 attribute_cols[2].markdown(
                     f"**Confidence:** {sentiment_data.get('audience_confidence', 0):.2%}"
                 )
+        if st.session_state.get("feedback", ""):
+            with feedback_tab:
+                st.code(st.session_state.feedback, language="text")
         else:
             st.info("No email content yet. Use the chat to get started.")
 
