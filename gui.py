@@ -80,7 +80,6 @@ def initialize_session_state():
         "chatbot_target_polarity": "",
         "feedback": "",
         "feedback_input": False,
-        "feedback_text_for_input": "",
         "formality_target": "Neutral",
         "formality_analysis_result": {},
         "formality_email_text": {},
@@ -138,12 +137,12 @@ with tab_chat:
         
         if mode == "Generate Email":
             user_input_key = "chat_input"
-            if st.button("Use feedback for email?"):
-                st.session_state.feedback_input=True
-                user_input = f"Implement the feedback given"
-            else:
-                st.session_state.feedback_input=False
-                user_input = st.chat_input("Type your prompt...", key=user_input_key)
+            st.session_state.feedback_input=False
+            user_input = st.chat_input("Type your prompt...", key=user_input_key)
+            if st.session_state.feedback:
+                if st.button("Use feedback for email?"):
+                    st.session_state.feedback_input=True
+                    user_input = f"Implement the feedback given"
             if tone_mode == "Guided":
                 with st.expander("Tone Settings", expanded=True):
                     st.markdown("##### Set your desired email tone")
@@ -216,39 +215,7 @@ with tab_chat:
                     st.session_state.messages.append(
                         {"role": "assistant", "content": feedback}
                     )
-                # if mode == "Generate Email":
-                #     targets = {}
-                #     if tone_mode == "Guided":
-                #         targets = {
-                #             "intent": st.session_state.chatbot_target_intent,
-                #             "formality": st.session_state.chatbot_target_formality,
-                #             "audience": st.session_state.chatbot_target_audience,
-                #             "polarity": st.session_state.chatbot_target_polarity,
-                #         }
-
-                #     generated_email, sentiment_data = gpt_generate_and_analyze(
-                #         user_input, analyze, targets
-                #     )
-                #     st.session_state.latest_email = generated_email
-                #     st.session_state.latest_analysis = sentiment_data
-                #     st.session_state.messages.append(
-                #         {"role": "assistant", "content": generated_email}
-                #     )
-                #     st.session_state.generated_emails.append(generated_email)
-                # else:  # Feedback Only
-                #     initial_email, sentiment_data = gpt_generate_and_analyze(
-                #         user_input, analyze, discourse_append=True
-                #     )
-                #     feedback = gpt_feedback(user_input, sentiment_data)
-                #     st.session_state.messages.append(
-                #         {"role": "assistant", "content": feedback}
-                #     )
-                #     st.session_state.feedback = feedback
-                #     st.session_state.latest_email = initial_email
-                #     st.session_state.latest_analysis = sentiment_data
-                #     st.session_state.generated_emails.append(initial_email)
                 st.rerun()
-
         if st.button("Clear Chat 🗑️", use_container_width=True):
             st.session_state.show_clear_dialog = True
         if st.session_state.get("show_clear_dialog", False):
@@ -267,6 +234,12 @@ with tab_chat:
                     with st.container():
                         for idx, email in enumerate(st.session_state.generated_emails):
                             st.code(email, language="text")
+                st.download_button(
+                    "Download Email",
+                    st.session_state.latest_email,
+                    file_name="email_preview.txt",
+                    mime="text/plain",
+                )
             with analysis_tab:
                 sentiment_data = st.session_state.latest_analysis
                 sent_cat = sentiment_data["sentiment_category"]
@@ -549,6 +522,7 @@ with tab_emailassistant:
             preview_text,
             file_name="email_preview.txt",
             mime="text/plain",
+            key="email_download"
         )
         st.markdown("### Email Analysis")
         if st.session_state.get("sentiment"):
