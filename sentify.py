@@ -1,5 +1,5 @@
 import argparse, sys, json
-from models.gpt import gpt
+from models.gpt import gpt_feedback
 from models.models import analyze
 
 def print_verbose(text, verbose=False, **kwargs):
@@ -14,7 +14,7 @@ def analyze_email(email_text, verbose=False, json_output=False, ai_feedback=Fals
     # get ai feedback if wanted
     if ai_feedback:
         print_verbose("Generating AI Feedback...", verbose, end="")
-        feedback = gpt(email_text, results)
+        feedback = gpt_feedback(email_text, results)
         results['feedback'] = feedback
         print_verbose("Done", verbose)
     if json_output:
